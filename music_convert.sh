@@ -11,7 +11,6 @@ BACKUP_DIR="/path/to/backup"
 
 # Set the FFmpeg audio quality level for OGG Vorbis.
 # The scale is -1 to 10, where 10 is the highest quality.
-# -q:a 10 targets approximately 500kbps VBR.
 OGG_QUALITY=10
 
 # --- Conversion Process ---

@@ -15,6 +15,9 @@ BACKUP_DIR="/path/to/backup"
 # The scale is -1 to 10, where 10 is the highest quality.
 OGG_QUALITY=10
 
+# Regular expression for `find` to filter search-restults for only music files
+FIND_REGEX='.+[mp3|wav|flac|aac|m4a|m4b|wma|alac|aiff]$'
+
 # --- Conversion Process ---
 
 # Ensure the backup directory exists.
@@ -29,7 +32,7 @@ echo "Source:      $MUSIC_DIR" | tee -a "$LOG_FILE"
 echo "Destination: $BACKUP_DIR" | tee -a "$LOG_FILE"
 
 # Use 'find' to locate all files, separating them with a NULL character.
-find "$MUSIC_DIR" -type f -print0 | while IFS= read -r -d '' input_file; do
+find "$MUSIC_DIR" -regex $FIND_REGEX -type f -print0 | while IFS= read -r -d '' input_file; do
 
     # Construct the output file path.
     relative_path="${input_file#$MUSIC_DIR/}"
